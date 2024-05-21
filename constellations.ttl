@@ -1,0 +1,12 @@
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+<http://fr.wikipedia.org/wiki/Zodiaque>
+  a "dbo:Constellation" ;
+  rdfs:label "Constellation du zodiaque" ;
+  rdfs:comment "Une constellation du zodiaque en astronomie." .
+
+<http://en.wikipedia.org/wiki/Zodiac>
+  a "dbo:Constellation" ;
+  rdfs:label "Zodiac constellation" ;
+  rdfs:comment "A zodiac constellation in astronomy." .
+
