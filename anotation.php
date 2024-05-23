@@ -32,14 +32,42 @@ if ($body) {
 
     foreach ($results as $row) {
         $tr = $doc->createElement('tr');
-        
+        /*var_dump($row);
+        print_r("<br>");
+        print_r("<br>");
+        var_dump($row->property);
+        print_r("<br>");
+        print_r("<br>");
+        var_dump($row)->hasValue;
+        print_r("<br>");
+        print_r("<br>");
+        print_r("<br>");
+        var_dump($row->property);
+        print_r("<br>");
+        print_r("<br>");
+        var_dump($row->hasValue);
+        print_r("<br>");
+        print_r("<br>");
+        var_dump($row->isValueOf);
+        print_r("<br>");
+        print_r("<br>");
+        die(var_dump($results));*/
+        //$tdProperty = $doc->createElement('td', htmlspecialchars(formatUri($row->property->getUri())));
         $tdProperty = $doc->createElement('td', htmlspecialchars(formatUri($row->property->getUri())));
-        $tdHasValue = $doc->createElement('td', htmlspecialchars($row->hasValue ? formatUri($row->hasValue->getUri()) : ''));
-        $tdIsValueOf = $doc->createElement('td', htmlspecialchars($row->isValueOf ? formatUri($row->isValueOf->getUri()) : ''));
+        //$tdHasValue = $doc->createElement('td', htmlspecialchars($row->hasValue ? formatUri($row->hasValue->getUri()) : ''));
+        if(isset($row->hasValue)){
+            //die(var_dump($row));
+            $tdHasValue = $doc->createElement('td', htmlspecialchars(formatUri($row->hasValue)));
+            $tr->appendChild($tdHasValue);
+
+        }
+        if(isset($row->isValueOf)){
+            $tdIsValueOf = $doc->createElement('td', htmlspecialchars(formatUri($row->isValueOf)));
+            $tr->appendChild($tdIsValueOf);
+
+        }
         
         $tr->appendChild($tdProperty);
-        $tr->appendChild($tdHasValue);
-        $tr->appendChild($tdIsValueOf);
         
         $table->appendChild($tr);
     }

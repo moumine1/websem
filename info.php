@@ -14,6 +14,12 @@ $query = "
 $sparql = new EasyRdf\Sparql\Client($sparqlEndpoint);
 $results = $sparql->query($query);
 
-function formatUri($uri) {
-    return str_replace('http://dbpedia.org/resource/', 'dbpedia:', $uri);
+function formatUri($value) {
+    // Vérifiez si la valeur est une ressource ou un littéral
+    if ($value instanceof EasyRdf\Resource) {
+        return str_replace('http://dbpedia.org/resource/', 'dbpedia:', $value->getUri());
+    } elseif ($value instanceof EasyRdf\Literal) {
+        return $value->getValue();
+    }
+    return '';
 }
